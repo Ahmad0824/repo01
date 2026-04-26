@@ -1,19 +1,24 @@
-name: Deploy to Surge
+name: Deploy to Surge.sh
+
 on:
   push:
-    branches:
-      - master  # Make sure this matches your branch name (main or master)
+    branches: [ main, master ]
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+
       - name: Install Surge
         run: npm install --global surge
-      - name: Deploy
-        # Change 'your-unique-site.surge.sh' to whatever you want your URL to be
-        run: surge ./ prject1_Ahmad0824.surge.sh --token ${{ secrets.SURGE_TOKEN_FOR_PROJECT1.SURGE_TOKEN }}
+
+      - name: Deploy to Surge
+        run: surge ./ ahmad0824-repo01.surge.sh --token ${{ secrets.SURGE_TOKEN }}
