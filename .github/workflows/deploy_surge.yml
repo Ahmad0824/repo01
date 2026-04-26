@@ -2,7 +2,7 @@ name: Deploy to Surge.sh
 
 on:
   push:
-    branches: [ main ]     # Changed to main (your default branch)
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -23,4 +23,4 @@ jobs:
       - name: Deploy to Surge
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: surge ./ ahmad0824-repo01.surge.sh
+        run: surge ./ ahmad0824-repo01.surge.sh --force
